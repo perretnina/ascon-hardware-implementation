@@ -1,0 +1,44 @@
+# Remove existing librairies and their content
+vdel -lib LIB_RTL -all
+vdel -lib LIB_BENCH -all
+
+# Build new librairies with vlib and vmap
+vlib LIB/LIB_RTL
+vmap LIB_RTL LIB/LIB_RTL
+vlib LIB/LIB_BENCH
+vmap LIB_BENCH LIB/LIB_BENCH
+
+# Define compilation options for all files
+VLOG_OPTS="-sv +acc -svinputport=net"
+
+# Compile all RTL sources with vlog
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/ascon_pack.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/Pc.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/Ps.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/Pl.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/xor_begin.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/xor_end.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/registre_cipher.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/registre_tag.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/state_registre.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/Permutation.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/compteur_double_init.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/FSM_Moore.sv
+vlog $VLOG_OPTS -work LIB_RTL ./SRC/RTL/ascon_top.sv
+
+# Compile all BENCH sources with vlog
+vlog $VLOG_OPTS -work LIB_BENCH -L LIB_RTL SRC/BENCH/Pc_tb.sv
+vlog $VLOG_OPTS -work LIB_BENCH -L LIB_RTL SRC/BENCH/Ps_tb.sv
+vlog $VLOG_OPTS -work LIB_BENCH -L LIB_RTL SRC/BENCH/Pl_tb.sv
+vlog $VLOG_OPTS -work LIB_BENCH -L LIB_RTL SRC/BENCH/Permutation_tb.sv
+vlog $VLOG_OPTS -work LIB_BENCH -L LIB_RTL SRC/BENCH/FSM_Moore_tb.sv
+vlog $VLOG_OPTS -work LIB_BENCH -L LIB_RTL SRC/BENCH/ascon_top_tb.sv
+
+# Simulation
+# /!\ Uncomment only one vsim command below
+#vsim -L LIB_RTL LIB_BENCH.Pc_tb
+#vsim -L LIB_RTL LIB_BENCH.Ps_tb
+#vsim -L LIB_RTL LIB_BENCH.Pl_tb
+#vsim -L LIB_RTL LIB_BENCH.Permutation_tb
+#vsim -L LIB_RTL LIB_BENCH.FSM_Moore_tb
+vsim -L LIB_RTL LIB_BENCH.ascon_top_tb

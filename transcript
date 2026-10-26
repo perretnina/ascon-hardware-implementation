@@ -1,0 +1,67 @@
+# //  ModelSim SE-64 2020.4 Oct 13 2020 Linux 3.10.0-1160.119.1.el7.x86_64
+# //
+# //  Copyright 1991-2020 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# vsim -L LIB_RTL LIB_BENCH.ascon_top_tb 
+# Start time: 18:21:11 on May 09,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "FSM_Moore(fast)".
+# Loading sv_std.std
+# Loading LIB_RTL.ascon_pack(fast)
+# Loading work.ascon_top_tb(fast)
+# Loading LIB_RTL.ascon_top_sv_unit(fast)
+# Loading LIB_RTL.ascon_top(fast)
+# Loading LIB_RTL.FSM_Moore_sv_unit(fast)
+# Loading LIB_RTL.FSM_Moore(fast)
+# Loading LIB_RTL.Permutation_sv_unit(fast)
+# Loading LIB_RTL.Permutation(fast)
+# Loading LIB_RTL.xor_begin_sv_unit(fast)
+# Loading LIB_RTL.xor_begin(fast)
+# Loading LIB_RTL.registre_cipher_sv_unit(fast)
+# Loading LIB_RTL.registre_cipher(fast)
+# Loading LIB_RTL.Pc_sv_unit(fast)
+# Loading LIB_RTL.Pc(fast)
+# Loading LIB_RTL.Ps_sv_unit(fast)
+# Loading LIB_RTL.Ps(fast)
+# Loading LIB_RTL.sbox(fast)
+# Loading LIB_RTL.Pl_sv_unit(fast)
+# Loading LIB_RTL.Pl(fast)
+# Loading LIB_RTL.xor_end_sv_unit(fast)
+# Loading LIB_RTL.xor_end(fast)
+# Loading LIB_RTL.registre_tag_sv_unit(fast)
+# Loading LIB_RTL.registre_tag(fast)
+# Loading LIB_RTL.state_registre_sv_unit(fast)
+# Loading LIB_RTL.state_registre(fast)
+# Loading LIB_RTL.compteur_double_init(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (128) does not match connection size (320) for port 'memoire_cipher_i'. The port definition is at: ./SRC/RTL/registre_cipher.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /ascon_top_tb/DUT/Permutation_1/registre_cipher_inst File: ./SRC/RTL/Permutation.sv Line: 58
+# ** Warning: (vsim-3015) [PCDPC] - Port size (128) does not match connection size (320) for port 'memoire_tag_i'. The port definition is at: ./SRC/RTL/registre_tag.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /ascon_top_tb/DUT/Permutation_1/registre_tag_inst File: ./SRC/RTL/Permutation.sv Line: 97
+add wave -position insertpoint sim:/ascon_top_tb/*
+add wave -position insertpoint  \
+sim:/ascon_top_tb/DUT/FSM_Moore_1/Ep
+run
+# reset du circuit
+# début du chiffrement
+# fin de la phase d'initialisation
+run
+# fin de la phase de traitement des données associées
+# fin de la phase de traitement du premier bloc de données
+# fin de la phase de traitement du deuxieme bloc de données
+run
+# fin du chiffrement
+# ** Note: $stop    : SRC/BENCH/ascon_top_tb.sv(117)
+#    Time: 1300 ns  Iteration: 0  Instance: /ascon_top_tb
+# Break in Module ascon_top_tb at SRC/BENCH/ascon_top_tb.sv line 117
+run
+# End time: 18:30:23 on May 09,2025, Elapsed time: 0:09:12
+# Errors: 0, Warnings: 2
