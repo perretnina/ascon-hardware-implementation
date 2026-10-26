@@ -1,5 +1,7 @@
 # ASCON Hardware Implementation
 
+*April–May 2025 | SystemVerilog · RTL Design · Cryptography*
+
 Hardware implementation of the **ASCON authenticated encryption algorithm** using SystemVerilog, focusing on RTL design, finite state machine control, and functional verification.
 
 ## Project Overview
